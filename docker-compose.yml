@@ -11,6 +11,8 @@ services:
       - utopia-api
     networks:
       - unetwork
+    volumes:
+      - ./data/:/var/uservice/data
 
   db:
     image: mariadb:10
