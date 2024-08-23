@@ -35,6 +35,8 @@ services:
       XDG_RUNTIME_DIR: /tmp/runtime-root
     networks:
       - unetwork
+    volumes:
+      - ./data/account.db:/app/account.db
 
 networks:
   unetwork:
