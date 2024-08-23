@@ -1,0 +1,38 @@
+version: "2.2"
+
+services:
+  bot:
+    build: src/
+    environment:
+      UTOPIA_TOKEN: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+      UTOPIA_HOST: utopia-api
+      UTOPIA_PORT: 22825
+    depends_on:
+      - utopia-api
+    networks:
+      - unetwork
+
+  db:
+    image: mariadb:10
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: uservice
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  utopia-api:
+    image: uto9234/utopia-api
+    ports:
+      - 22825:22825
+    environment:
+      XDG_RUNTIME_DIR: /tmp/runtime-root
+    networks:
+      - unetwork
+
+networks:
+  unetwork:
