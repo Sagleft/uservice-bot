@@ -1,6 +1,7 @@
 package app
 
 import (
+	"bot/pkg/config"
 	"fmt"
 	"os"
 	"os/signal"
@@ -23,9 +24,16 @@ func New() (App, error) {
 }
 
 func (a *app) Run() error {
-	data := uchatbot.ChatBotData{}
+	cfg, err := config.Load()
+	if err != nil {
+		return fmt.Errorf("load: %w", err)
+	}
 
-	var err error
+	data := uchatbot.ChatBotData{
+		Config: cfg.Utopia,
+		// TODO: other data
+	}
+
 	a.chatBot, err = uchatbot.NewChatBot(data)
 	if err != nil {
 		return fmt.Errorf("create chatbot: %w", err)
