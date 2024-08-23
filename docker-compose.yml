@@ -4,6 +4,11 @@ services:
   bot:
     build: src/
     environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: uservice
+      DB_USER: user
+      DB_PASS: password
       UTOPIA_TOKEN: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       UTOPIA_HOST: utopia-api
       UTOPIA_PORT: 22825
