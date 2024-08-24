@@ -2,6 +2,7 @@ package app
 
 import (
 	"bot/pkg/config"
+	"bot/pkg/db"
 	"fmt"
 	"os"
 	"os/signal"
@@ -15,6 +16,7 @@ type App interface {
 }
 
 type app struct {
+	dbConn  db.DB
 	chatBot *uchatbot.ChatBot
 }
 
@@ -27,6 +29,11 @@ func (a *app) Run() error {
 	cfg, err := config.Load()
 	if err != nil {
 		return fmt.Errorf("load: %w", err)
+	}
+
+	a.dbConn, err = db.New(cfg.DB, cfg.DB.TablePrefix)
+	if err != nil {
+		return fmt.Errorf("db: %w", err)
 	}
 
 	data := uchatbot.ChatBotData{

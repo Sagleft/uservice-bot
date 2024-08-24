@@ -1,9 +1,14 @@
 utopia:
+  host: utopia-api
+  token: FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+  port: 22825
+  wsport: 25000
 
 db:
   host: db
   port: 3306
   dbName: uservice
+  tablePrefix:
   user: user
   password: password
   connTimeout: 5000

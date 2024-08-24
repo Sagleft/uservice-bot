@@ -22,6 +22,7 @@ type DBConfig struct {
 	Name          string `yaml:"dbName"`
 	User          string `yaml:"user"`
 	Password      string `yaml:"password"`
+	TablePrefix   string `yaml:"tablePrefix"`
 	ConnTimeoutMS int    `yaml:"connTimeout"` // default:"5000"
 	GormDebugMode bool   `yaml:"debugMode"`
 	Location      string `yaml:"timeZone"` // default:"Europe/Moscow"
