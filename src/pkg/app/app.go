@@ -4,6 +4,7 @@ import (
 	"bot/pkg/config"
 	"bot/pkg/db"
 	"fmt"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -46,6 +47,7 @@ func (a *app) Run() error {
 		return fmt.Errorf("create chatbot: %w", err)
 	}
 
+	log.Println("app started")
 	a.waitForFinish()
 	return nil
 }
@@ -55,4 +57,6 @@ func (a *app) waitForFinish() {
 	// catch SIGETRM or SIGINTERRUPT
 	signal.Notify(cancelChan, syscall.SIGTERM, syscall.SIGINT)
 	<-cancelChan
+
+	log.Println("app finished")
 }
