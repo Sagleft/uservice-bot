@@ -10,6 +10,11 @@ services:
       - unetwork
     volumes:
       - ./../data/:/app/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
 
   db:
     image: mariadb:10
@@ -21,6 +26,11 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - "3308:3306"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
 
   utopia-api:
     image: uto9234/utopia-api
@@ -34,6 +44,11 @@ services:
       - unetwork
     volumes:
       - ./data/account.db:/app/account.db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
 
 networks:
   unetwork:
