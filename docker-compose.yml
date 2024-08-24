@@ -3,14 +3,13 @@ version: "2.2"
 services:
   bot:
     build: src/
-    environment:
-      
+    restart: always
     depends_on:
       - utopia-api
     networks:
       - unetwork
     volumes:
-      - ./data/:/var/uservice/data
+      - ./../data/:/app/data
 
   db:
     image: mariadb:10
@@ -20,13 +19,12 @@ services:
       MYSQL_DATABASE: uservice
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-    volumes:
-      - data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3308:3306"
 
   utopia-api:
     image: uto9234/utopia-api
+    restart: always
     ports:
       - 22825:22825
       - 25000:25000
@@ -35,7 +33,7 @@ services:
     networks:
       - unetwork
     volumes:
-      - ./data/account.db:/app/account.db
+      - ./../data/account.db:/app/account.db
 
 networks:
   unetwork:
