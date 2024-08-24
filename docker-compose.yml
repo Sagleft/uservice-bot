@@ -33,7 +33,7 @@ services:
     networks:
       - unetwork
     volumes:
-      - ./../data/account.db:/app/account.db
+      - ./data/account.db:/app/account.db
 
 networks:
   unetwork:
