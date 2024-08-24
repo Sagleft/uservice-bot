@@ -1,0 +1,11 @@
+utopia:
+
+db:
+  host: db
+  port: 3306
+  dbName: uservice
+  user: user
+  password: password
+  connTimeout: 5000
+  debugMode: false
+  timeZone: Europe/Moscow
